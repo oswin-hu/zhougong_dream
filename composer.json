@@ -1,0 +1,28 @@
+{
+    "name": "oswin/zg_dream",
+    "description": "Zhou Gong's Dream Interpretation Data Interface Based on Laravel System",
+    "keywords": ["Zhou Gong's", "Zhou Gong's Dream", "Zhou Gong's Dream Interpretation","周公", "解梦", "周公解梦"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "oswin.hu",
+            "email": "oswin.hu@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ZGDream\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\": "test/"
+        }
+    }
+}
