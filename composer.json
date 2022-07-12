@@ -1,6 +1,6 @@
 {
     "name": "oswin/zg_dream",
-    "description": "基于laravel系统的周公解梦数据接口",
+    "description": "基于laravel系统的周公解梦应用",
     "keywords": [
         "Zhou Gong",
         "Zhou Gong Dream",
