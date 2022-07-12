@@ -1,7 +1,16 @@
 {
     "name": "oswin/zg_dream",
+<<<<<<< HEAD
     "description": "Zhou Gong's Dream Interpretation Data Interface Based on Laravel System",
     "keywords": ["Zhou Gong's", "Zhou Gong's Dream", "Zhou Gong's Dream Interpretation","周公", "解梦", "周公解梦"],
+=======
+    "description": "基于laravel系统的周公解梦数据接口",
+    "keywords": [
+        "Zhou Gong",
+        "Zhou Gong Dream",
+        "Zhou Gong Dream Interpretation"
+    ],
+>>>>>>> main
     "license": "MIT",
     "authors": [
         {
