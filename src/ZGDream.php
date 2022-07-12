@@ -11,18 +11,12 @@ namespace ZGDream;
 class ZGDream
 {
 
-<<<<<<< HEAD
-    public function __construct()
-    {
-=======
-    public static function Lists(): string
+    public function lists(): string
     {
         return '列表';
     }
 
-    public static function details(): string
-    {
+    public function details():string{
         return '详情';
->>>>>>> main
     }
 }
