@@ -21,8 +21,7 @@
     },
     "autoload": {
         "classmap": [
-            "database/seeds",
-            "database/factories"
+            "database/seeds"
         ],
         "psr-4": {
             "ZGDream\\": "src/"
