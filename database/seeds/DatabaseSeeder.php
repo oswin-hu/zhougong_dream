@@ -1,5 +1,5 @@
 <?php
-
+namespace Database\Seeders;
 /**
  * Author: oswin
  * Time: 2022/7/12-16:53
@@ -7,10 +7,10 @@
  * Version: v1.0
  */
 
-use Illuminate\Database\Seeder;
+use Illuminate\Database\Seeder as LaravelSeeder;
 
 
-class DatabaseSeeder extends Seeder
+class DatabaseSeeder extends LaravelSeeder
 {
     /**
      * Run the database seeds.

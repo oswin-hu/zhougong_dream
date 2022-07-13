@@ -1,5 +1,5 @@
 <?php
-
+namespace Database\Seeders;
 /**
  * Author: oswin
  * Time: 2022/7/12-16:54
@@ -7,9 +7,9 @@
  * Version: v1.0
  */
 
-use Illuminate\Database\Seeder;
+use Illuminate\Database\Seeder as LaravelSeeder;
 
-class DreamTableSeeder extends Seeder
+class DreamTableSeeder extends LaravelSeeder
 {
 
     /**
