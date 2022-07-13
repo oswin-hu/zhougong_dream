@@ -20,11 +20,9 @@
         "phpunit/phpunit": "~6.0"
     },
     "autoload": {
-        "classmap": [
-            "database/seeds"
-        ],
         "psr-4": {
-            "ZGDream\\": "src/"
+            "ZGDream\\": "src/",
+            "Database\\Seeders\\": "database/seeds/"
         }
     },
     "autoload-dev": {
