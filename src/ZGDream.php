@@ -10,6 +10,9 @@ namespace ZGDream;
 
 class ZGDream
 {
+    public function __construct()
+    {
+    }
 
     public function lists(): string
     {
