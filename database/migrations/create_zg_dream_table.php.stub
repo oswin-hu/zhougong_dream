@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateZhougongDreamTable extends Migration
+class CreateZgDreamTable extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up()
     {
-        Schema::create('zhougong_dream', function (Blueprint $table) {
+        Schema::create('zg_dream', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title', 50)->comment('标题');
             $table->text('message')->comment('内容');
