@@ -10,16 +10,13 @@ namespace ZGDream;
 
 class ZGDream
 {
-    public function __construct()
+
+    public function search(string $keyword): string
     {
+        return $keyword;
     }
 
-    public function lists(): string
-    {
-        return '列表';
-    }
-
-    public function details():string{
-        return '详情';
+    public function details(int $id):string{
+        return 'id:'.$id.'的详情';
     }
 }

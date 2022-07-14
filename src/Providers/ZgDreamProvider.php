@@ -21,11 +21,11 @@ class ZgDreamProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (class_exists('CreateZgDreamTable')) {
+        if (class_exists('CreateZgDreamTable') === false) {
             $timestamp = date('Y_m_d_His');
 
             $this->publishes([
-                __DIR__.'/../migrations/create_zg_dream_table.php.stub' => database_path("/migrations/{$timestamp}_create_zg_dream_table.php")
+                __DIR__.'/../../database/migrations/create_zg_dream_table.php.stub' => database_path("/migrations/{$timestamp}_create_zg_dream_table.php")
             ], 'laravel-zg-dream');
         }
     }
