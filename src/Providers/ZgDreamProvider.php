@@ -14,7 +14,7 @@ use ZGDream\ZGDream;
 class ZgDreamProvider extends ServiceProvider
 {
 
-    public function boot(): bool
+    public function boot(): void
     {
         if (class_exists('CreateZgDreamTable')) {
             $timestamp = date('Y_m_d_His');
