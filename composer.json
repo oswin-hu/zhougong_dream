@@ -20,6 +20,13 @@
     "require-dev": {
         "phpunit/phpunit": "~6.0"
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ZGDream\\Providers\\ZgDreamProvider"
+            ]
+        }
+    },
     "autoload": {
         "psr-4": {
             "ZGDream\\": "src/"
