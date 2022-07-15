@@ -8,10 +8,19 @@
 
 namespace ZGDream;
 
+use \Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\DB;
 
 class ZGDream
 {
+
+    protected $fileSystem;
+
+    public function __construct(Filesystem $filesystem)
+    {
+        $this->fileSystem = $filesystem;
+    }
+
     public function search(string $keyword): array
     {
         $rtn = [];
@@ -30,7 +39,74 @@ class ZGDream
         return $rtn;
     }
 
-    public function initData():void{
+    /**
+     * @param $createdTable 是否创建表
+     * @return void
+     */
+    public function initData($createdTable = true): void
+    {
+        $sqls = $this->importSql(__DIR__.'/../data/zg_dream.sql', $createdTable);
+        if (!empty($sqls)) {
+            foreach ($sqls as $sql){
+                DB::insert($sql);
+            }
+        }
 
+    }
+
+    private function importSql(string $file, bool $createTale = true): array
+    {
+        $sqlStr = $this->fileSystem->get($file);
+        //纯sql内容
+        $pure_sql = [];
+        // 多行注释标记
+        $comment = false;
+        if (!empty($sqlStr)) {
+            // 按行分割，兼容多平台
+            $sql = str_replace(["\r\n", "\r"], "\n", $sqlStr);
+            $sql = explode("\n", $sql);
+
+            //循环处理每一行
+            foreach ($sql as $key => $line) {
+                //跳过空行或以#或--开头的单行注释或以/**/包裹起来的单行注释
+                if ($line === '' || preg_match("/(#|--)/", $line) || preg_match("/^\/\*(.*?)\*\//", $line)) {
+                    continue;
+                }
+                // 多行注释开始
+                if (substr($line, 0, 2) === '/*') {
+                    $comment = true;
+                    continue;
+                }
+
+                // 多行注释结束
+                if (substr($line, -2) === '*/') {
+                    $comment = false;
+                    continue;
+                }
+
+                // 多行注释没有结束，继续跳过
+                if ($comment || $line === 'BEGIN;' || $line === 'COMMIT;') {
+                    continue;
+                }
+
+                //sql语句
+
+                if (strpos($line, 'INSERT INTO ') === 0) {
+                    $time = date('Y-m-d H:i:s');
+                    $line = substr($line, 0, -2).", '$time', '$time');";
+                }
+//                echo $line;
+                $pure_sql[] = $line;
+            }
+
+            // 以数组形式返回sql语句
+            $pure_sql = implode("\n", $pure_sql);
+            $pure_sql = explode(";\n", $pure_sql);
+
+            if ($createTale === false) {
+                unset($pure_sql[0], $pure_sql[1], $pure_sql[2]);
+            }
+        }
+        return $pure_sql;
     }
 }

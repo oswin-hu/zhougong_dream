@@ -8,6 +8,7 @@
 
 namespace ZGDream\Providers;
 
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 use ZGDream\ZGDream;
 
@@ -25,7 +26,7 @@ class ZgDreamProvider extends ServiceProvider
             $timestamp = date('Y_m_d_His');
 
             $this->publishes([
-                __DIR__.'/../../database/migrations/create_zg_dream_table.php.stub' => database_path("/migrations/{$timestamp}_create_zg_dream_table.php")
+                __DIR__.'/../../database/migrations/create_zg_dreams_table.php.stub' => database_path("/migrations/{$timestamp}_create_zg_dreams_table.php")
             ], 'laravel-zg-dream');
         }
     }
@@ -38,8 +39,8 @@ class ZgDreamProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton('ZGDream', function () {
-            return new ZGDream();
+        $this->app->singleton('ZGDream', function ($app) {
+            return new ZGDream(new Filesystem());
         });
     }
 
