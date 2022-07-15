@@ -8,15 +8,29 @@
 
 namespace ZGDream;
 
+use Illuminate\Support\Facades\DB;
+
 class ZGDream
 {
-
-    public function search(string $keyword): string
+    public function search(string $keyword): array
     {
-        return $keyword;
+        $rtn = [];
+        if (!empty($keyword)) {
+            $rtn = collect(DB::table('zg_dreams')->where('title', 'like', $keyword)->select(['id', 'title'])->get())->toArray();
+        }
+        return $rtn;
     }
 
-    public function details(int $id):string{
-        return 'id:'.$id.'的详情';
+    public function details(int $id): array
+    {
+        $rtn = [];
+        if (!empty($id)) {
+            $rtn = collect(DB::table('zg_dreams')->where(['id' => $id])->first())->toArray();
+        }
+        return $rtn;
+    }
+
+    public function initData():void{
+
     }
 }
