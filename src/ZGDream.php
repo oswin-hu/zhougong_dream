@@ -11,15 +11,18 @@ namespace ZGDream;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use \Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Helper\ProgressBar;
 
 class ZGDream
 {
 
     protected Filesystem $fileSystem;
+    protected ProgressBar $bar;
 
-    public function __construct(Filesystem $filesystem)
+    public function __construct(Filesystem $filesystem, ProgressBar $progressBar)
     {
         $this->fileSystem = $filesystem;
+        $this->bar        = $progressBar;
     }
 
     public function search(string $keyword): array
@@ -47,11 +50,14 @@ class ZGDream
      */
     public function initData(bool $createdTable = true): void
     {
-        $sqls = $this->importSql(__DIR__.'/../data/zg_dream.sql', $createdTable);
-        if (!empty($sqls)) {
-            foreach ($sqls as $sql){
-                DB::insert($sql);
+        $inserts = $this->importSql(__DIR__.'/../data/zg_dream.sql', $createdTable);
+        if (!empty($inserts)) {
+            $this->bar->setMaxSteps(count($inserts));
+            foreach ($inserts as $insert) {
+                DB::insert($insert);
+                $this->bar->advance();
             }
+            $this->bar->finish();
         }
 
     }

@@ -10,6 +10,8 @@ namespace ZGDream\Providers;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Output\ConsoleOutput;
 use ZGDream\ZGDream;
 
 class ZgDreamProvider extends ServiceProvider
@@ -40,8 +42,9 @@ class ZgDreamProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton('ZGDream', function ($app) {
-            return new ZGDream(new Filesystem());
+        $this->app->singleton('ZGDream', function () {
+            $outPut = new ConsoleOutput();
+            return new ZGDream(new Filesystem(), new ProgressBar($outPut));
         });
     }
 
