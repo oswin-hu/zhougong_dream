@@ -10,6 +10,15 @@ namespace ZGDream\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
+
+/**
+ * @method static \ZGDream\ZGDream search(string $keyword)
+ * @method static \ZGDream\ZGDream details(int $id)
+ * @method static \ZGDream\ZGDream initData(bool $createdTable = true)
+ *
+ *
+ * @see \ZGDream\ZGDream
+ */
 class ZGDream extends Facade
 {
 

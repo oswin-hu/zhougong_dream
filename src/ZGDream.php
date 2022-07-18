@@ -58,6 +58,7 @@ class ZGDream
                 $this->bar->advance();
             }
             $this->bar->finish();
+            echo "\n";
         }
 
     }
