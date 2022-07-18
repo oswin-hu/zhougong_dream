@@ -22,7 +22,8 @@ class ZGDreamTest extends TestCase
 
     public function testDetails(): void
     {
-        ZGDream::details(1);
+        $detail = ZGDream::details(1);
+        print_r($detail);
         $this->assertTrue(true);
     }
 }
