@@ -8,13 +8,14 @@
 
 namespace ZGDream;
 
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use \Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\DB;
 
 class ZGDream
 {
 
-    protected $fileSystem;
+    protected Filesystem $fileSystem;
 
     public function __construct(Filesystem $filesystem)
     {
@@ -40,10 +41,11 @@ class ZGDream
     }
 
     /**
-     * @param $createdTable 是否创建表
+     * @param  bool  $createdTable  是否创建表
      * @return void
+     * @throws FileNotFoundException
      */
-    public function initData($createdTable = true): void
+    public function initData(bool $createdTable = true): void
     {
         $sqls = $this->importSql(__DIR__.'/../data/zg_dream.sql', $createdTable);
         if (!empty($sqls)) {
@@ -54,6 +56,12 @@ class ZGDream
 
     }
 
+    /**
+     * @param  string  $file
+     * @param  bool  $createTale
+     * @return array
+     * @throws FileNotFoundException
+     */
     private function importSql(string $file, bool $createTale = true): array
     {
         $sqlStr = $this->fileSystem->get($file);
@@ -73,7 +81,7 @@ class ZGDream
                     continue;
                 }
                 // 多行注释开始
-                if (substr($line, 0, 2) === '/*') {
+                if (strpos($line, '/*') === 0) {
                     $comment = true;
                     continue;
                 }

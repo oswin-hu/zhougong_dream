@@ -1,0 +1,22 @@
+
+/**
+ * Author: oswin
+ * Time: 2022/7/18-12:54
+ * Description:
+ * Version: v1.0
+ */
+
+use Illuminate\Database\Seeder;
+
+class ZGDreamSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+
+    }
+}

@@ -26,7 +26,8 @@ class ZgDreamProvider extends ServiceProvider
             $timestamp = date('Y_m_d_His');
 
             $this->publishes([
-                __DIR__.'/../../database/migrations/create_zg_dreams_table.php.stub' => database_path("/migrations/{$timestamp}_create_zg_dreams_table.php")
+                __DIR__.'/../../database/migrations/create_zg_dreams_table.php.stub' => database_path("/migrations/{$timestamp}_create_zg_dreams_table.php"),
+                __DIR__.'/../../database/seeders/ZGDreamSeeder.php.stub' => database_path("/seeders/ZGDreamSeeder.php")
             ], 'laravel-zg-dream');
         }
     }
