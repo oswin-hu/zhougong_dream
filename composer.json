@@ -21,6 +21,7 @@
         "illuminate/filesystem": "^8 || ^9"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
         "phpunit/phpunit": "~6.0"
     },
     "extra": {
